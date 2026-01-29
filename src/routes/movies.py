@@ -23,6 +23,9 @@ async def get_movies(
         raise HTTPException(status_code=404, detail="No movies found.")
 
     total_pages = ceil(total_items / per_page)
+    if page > total_pages:
+        raise HTTPException(status_code=404, detail="No movies found.")
+
 
     stmt = (
         select(MovieModel)

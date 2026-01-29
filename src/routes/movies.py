@@ -35,10 +35,10 @@ async def get_movies(
     result = await db.execute(stmt)
     movies = result.scalars().all()
 
-    prev_page = f"/theater/movies/?page={page-1}&per_page={per_page}" \
-                    if page > 1 else None
-    next_page = f"/theater/movies/?page={page+1}&per_page={per_page}" \
-                    if page < total_pages else None
+    prev_page = f"/theater/movies/?page={page - 1}&per_page={per_page}" \
+        if page > 1 else None
+    next_page = f"/theater/movies/?page={page + 1}&per_page={per_page}" \
+        if page < total_pages else None
 
     return {
         "movies": movies,
